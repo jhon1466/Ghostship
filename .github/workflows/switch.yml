@@ -1,5 +1,5 @@
 name: Switch Validation
-on: [pull_request]
+on: [pull_request, workflow_dispatch]
 
 env:
   # Allow actions still pinned to the deprecated Node 16 runtime to keep running.
