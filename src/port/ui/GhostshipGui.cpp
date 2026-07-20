@@ -22,7 +22,9 @@ void C_RunGuiDrawCallbacks();
 
 #include <ship/window/gui/ConsoleWindow.h>
 #include <ship/window/gui/EventDebuggerWindow.h>
+#ifndef __SWITCH__
 #include <ship/window/gui/ShaderSettingsWindow.h>
+#endif
 #include <libultraship/window/gui/GfxDebuggerWindow.h>
 
 // Invisible host window that fires C mod ImGui callbacks each frame.
@@ -57,7 +59,9 @@ std::shared_ptr<Ship::GuiWindow> mConsoleWindow;
 std::shared_ptr<AchievementsWindow> mAchievementsWindow;
 std::shared_ptr<Ship::EventDebuggerWindow> mEventDebuggerWindow;
 std::shared_ptr<LUS::GfxDebuggerWindow> mGfxDebuggerWindow;
+#ifndef __SWITCH__
 std::shared_ptr<Ship::ShaderSettingsWindow> mShaderSettingsWindow;
+#endif
 
 std::shared_ptr<Rando::CheckTracker::CheckTrackerWindow> mRandoCheckTrackerWindow;
 std::shared_ptr<Rando::CheckTracker::SettingsWindow> mRandoCheckTrackerSettingsWindow;
@@ -130,9 +134,11 @@ void SetupGuiElements() {
                                                                        "Input Viewer Settings", ImVec2(500, 525));
     gui->AddGuiWindow(mInputViewerSettings);
 
+#ifndef __SWITCH__
     mShaderSettingsWindow = std::make_shared<Ship::ShaderSettingsWindow>(CVAR_WINDOW("ShaderSettings"),
                                                                          "Shader Settings", ImVec2(420, 520));
     gui->AddGuiWindow(mShaderSettingsWindow);
+#endif
 
     mModalWindow = std::make_shared<GhostshipModalWindow>(CVAR_WINDOW("ModalWindow"), "Modal Window");
     gui->AddGuiWindow(mModalWindow);
@@ -172,7 +178,9 @@ void Destroy() {
     mRandoEntranceTrackerSettingsWindow = nullptr;
     mConsoleWindow = nullptr;
     mObjectViewer = nullptr;
+#ifndef __SWITCH__
     mShaderSettingsWindow = nullptr;
+#endif
     mGfxDebuggerWindow = nullptr;
 }
 
