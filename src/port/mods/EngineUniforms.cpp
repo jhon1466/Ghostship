@@ -1,3 +1,7 @@
+// gfx_set_custom_uniform() isn't implemented yet in the Net64DD/libultraship
+// Switch fork used for Switch builds, so this optional shader-uniform feature
+// is disabled there rather than failing the build.
+#ifndef __SWITCH__
 #include <libultraship.h>
 #include <fast/interpreter.h>
 
@@ -78,3 +82,4 @@ static void Init() {
 }
 
 static RegisterShipInitFunc initFunc(Init);
+#endif
